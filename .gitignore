@@ -7,6 +7,7 @@
 *.xml
 *.idea
 *.mvn
+*.iml
 *.settings
 !pom.xml
 *.cmd
@@ -16,6 +17,7 @@
 target/
 test/
 src/test/
+log4j/
 # Compiled class file
 *.class
 

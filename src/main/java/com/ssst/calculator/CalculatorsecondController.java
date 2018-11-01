@@ -16,6 +16,7 @@ public class CalculatorsecondController {
                                                       @RequestParam(value = "facility_cost1",defaultValue = "300000") float facility_cost1){
 
         logger.info("总经费:"+total_cost1+"  设备使用费:"+facility_cost1);
+        logger.info("总经费:"+total_cost1+"  设备使用费:"+facility_cost1);
         Z1Calculator z1c = new Z1Calculator();
         CalculatorResult cr = z1c.FirstType(total_cost1, facility_cost1);
 //        String s="间接费总额："+cr.getIndirect_fees()+"  直接费用："+cr.getDirect_fees()+"  学校管理费："+cr.getSchool_management_fees()+"  学院管理费"+cr.getCollege_management_fees()+"  项目管理费"+cr.getGroup_management_fees();

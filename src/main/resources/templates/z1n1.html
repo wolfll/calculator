@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css" />
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css" />
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    
+</head>
+
+<body>
+    <template id="z1n1.html">
+        <ons-page id="z1n1">
+           
+            <h1 style="text-align:center">请输入您的总经费</h1>
+    
+    
+    
+    		<form action="#" th:action="@{/z1n1}" th:object="${calculatorData}" method="post">
+            <ul class="list">
+                <li class="list-item">
+                    <div class="list-item__center">
+                        <p>总经费: <input type="text" class="text-input" placeholder="总经费" th:field="*{fund}" /></p>
+                    </div>
+                </li>
+                <li class="list-item">
+                    <div class="list-item__center">
+                        <p>设备购置费: <input type="text" class="text-input" placeholder="设备购置费" th:field="*{equipmentCost}" /></p>
+                    </div>
+                </li>
+                <li class="list-item">
+                    <div class="list-item__center">
+                        <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+                    </div>
+                </li>
+            </ul>
+            </form>
+            
+            
+                <div style="text-align:center; margin-top:50px;">
+                <ons-button  onclick="createAlertDialog()">计算经费</ons-button>
+                <!--<ons-button onclick="notify()">Notification</ons-button>-->
+                    </div>
+
+        </ons-page>
+    </template>
+
+
+</body>
+</html>

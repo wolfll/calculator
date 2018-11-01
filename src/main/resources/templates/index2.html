@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css" />
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css" />
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script>
+        document.addEventListener('init', function (event) {
+            var page = event.target;
+
+            if (page.id === 'page1') {
+                page.querySelector('#push-button').onclick = function () {
+                    document.querySelector('#myNavigator').pushPage('page2.html', { data: { title: 'Page 2' } });
+                };
+            } 
+
+        });
+    </script>
+    <script>
+        var createAlertDialog = function () {
+            var dialog = document.getElementById('my-alert-dialog');
+
+            if (dialog) {
+                dialog.show();
+            } else {
+                ons.createElement('alert-dialog.html', { append: true })
+                    .then(function (dialog) {
+                        dialog.show();
+                    });
+            }
+        };
+
+        var hideAlertDialog = function () {
+            document
+                .getElementById('my-alert-dialog')
+                .hide();
+        };
+
+        var notify = function () {
+            ons.notification.alert('This dialog was created with ons.notification');
+        };
+    </script>
+</head>
+
+<body>
+    <ons-navigator swipeable id="myNavigator" page="page1.html"></ons-navigator>
+
+    <template id="page1.html">
+        <ons-page id="page1">
+            <ons-toolbar>
+                <div class="center">纵向一类</div>
+            </ons-toolbar>
+
+            <ul class="list list--inset" style="margin-top: 50px;">
+                <li class="list-item list--inset__item list-item--chevron list-item--tappable">
+                    <div class="list-item__center" id="push-button">国家重点研发计划</div>
+                </li>
+                <li class="list-item list--inset__item list-item--chevron list-item--tappable">
+                    <div class="list-item__center">国家科技重大专项</div>
+                </li>
+                <li class="list-item list--inset__item list-item--chevron list-item--tappable">
+                    <div class="list-item__center">国家社科基金</div>
+                </li>
+                <li class="list-item list--inset__item list-item--chevron list-item--tappable">
+                    <div class="list-item__center">国家自然科学基金</div>
+                </li>
+                <li class="list-item list--inset__item list-item--chevron list-item--tappable">
+                    <div class="list-item__center">军委科技委立项项目（基础加强等）</div>
+                </li>
+            </ul>
+
+            <div class="tabbar">
+                    <label class="tabbar__item">
+                        <input type="radio" name="tabbar-c" checked="checked">
+                        <button class="tabbar__button"  >
+                            <div class="tabbar__label" >纵向一类</div>
+                        </button>
+                    </label>
+                
+                    <label class="tabbar__item">
+                        <input type="radio" name="tabbar-c" >
+                        <button class="tabbar__button" >
+                            <div class="tabbar__label" >纵向二类</div>
+                        </button>
+                    </label>
+                
+                    <label class="tabbar__item">
+                        <input type="radio" name="tabbar-c">
+                        <button class="tabbar__button">
+                            <div class="tabbar__label">纵向三类</div>
+                        </button>
+                    </label>
+    
+                    <label class="tabbar__item">
+                        <input type="radio" name="tabbar-c">
+                        <button class="tabbar__button">
+                            <div class="tabbar__label">横向科研</div>
+                        </button>
+                    </label>
+                </div>
+
+            
+
+        </ons-page>
+    </template>
+
+    <template id="page2.html">
+        <ons-page id="page2">
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button>返回</ons-back-button>
+                </div>
+                <div class="center">国家重点研发计划</div>
+            </ons-toolbar>
+    
+            <h1 style="text-align:center">请输入您的总经费</h1>
+    
+    
+    
+    		<form action="#" th:action="@{/z1n1}" th:object="${calculatorData}" method="post">
+            <ul class="list">
+                <li class="list-item">
+                    <div class="list-item__center">
+                        <p>总经费: <input type="text" class="text-input" placeholder="总经费" th:field="*{fund}" /></p>
+                    </div>
+                </li>
+                <li class="list-item">
+                    <div class="list-item__center">
+                        <p>设备购置费: <input type="text" class="text-input" placeholder="设备购置费" th:field="*{equipmentCost}" /></p>
+                    </div>
+                </li>
+                <li class="list-item">
+                    <div class="list-item__center">
+                        <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+                    </div>
+                </li>
+            </ul>
+            </form>
+            
+            
+                <div style="text-align:center; margin-top:50px;">
+                <ons-button  onclick="createAlertDialog()">计算经费</ons-button>
+                <!--<ons-button onclick="notify()">Notification</ons-button>-->
+                    </div>
+
+                <div class="tabbar">
+                        <label class="tabbar__item">
+                            <input type="radio" name="tabbar-c" checked="checked">
+                            <button class="tabbar__button"  >
+                                <div class="tabbar__label" >纵向一类</div>
+                            </button>
+                        </label>
+                    
+                        <label class="tabbar__item">
+                            <input type="radio" name="tabbar-c" >
+                            <button class="tabbar__button" >
+                                <div class="tabbar__label" >纵向二类</div>
+                            </button>
+                        </label>
+                    
+                        <label class="tabbar__item">
+                            <input type="radio" name="tabbar-c">
+                            <button class="tabbar__button">
+                                <div class="tabbar__label">纵向三类</div>
+                            </button>
+                        </label>
+        
+                        <label class="tabbar__item">
+                            <input type="radio" name="tabbar-c">
+                            <button class="tabbar__button">
+                                <div class="tabbar__label">横向科研</div>
+                            </button>
+                        </label>
+                    </div>
+        </ons-page>
+    </template>
+
+    <template id="alert-dialog.html">
+        <ons-alert-dialog id="my-alert-dialog" modifier="rowfooter">
+          <div class="alert-dialog-title">计算结果</div>
+          <div class="alert-dialog-content">
+            <p>总经费：10000元</p>
+            <p>购置费：5000元</p>
+            <p>间接费总额：5000元</p>
+            <p>学校管理费：5000元</p>
+            <p>学院管理费：5000元</p>
+            <p>项目组管理费：5000元</p>
+          </div>
+          <div class="alert-dialog-footer">
+            <ons-alert-dialog-button onclick="hideAlertDialog()">拷贝结果</ons-alert-dialog-button>
+            <ons-alert-dialog-button onclick="hideAlertDialog()">重新计算</ons-alert-dialog-button>
+          </div>
+        </ons-alert-dialog>
+      </template>
+
+</body>
+</html>

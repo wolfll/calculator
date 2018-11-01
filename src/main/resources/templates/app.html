@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>哈工程-财务处-财务计算器</title>
+    <meta charset="UTF-8" />
+
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css" />
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w"
+        crossorigin="anonymous">
+
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script>
+        document.addEventListener("prechange", function (event) {
+            document.querySelector("ons-toolbar .center").innerHTML = event.tabItem.getAttribute("label");
+        });
+    </script>
+    <script>
+        document.addEventListener("init", function (event) {
+            var page = event.target;
+
+            if (page.id === "z1") {
+                page.querySelector("#push-button").onclick = function () {
+                    document.querySelector("#myNavigator").pushPage("z1n1.html");
+                };
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <ons-navigator swipeable id="myNavigator" page="bar.html"></ons-navigator>
+
+    <template id="bar.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="center">纵向一类</div>
+            </ons-toolbar>
+
+            <ons-tabbar swipeable position="auto">
+                <ons-tab page="z1.html" label="纵向一类">
+                </ons-tab>
+                <ons-tab page="z2.html" label="纵向二类">
+                </ons-tab>
+                <ons-tab page="z3.html" label="纵向三类">
+                </ons-tab>
+                <ons-tab page="hk.html" label="横向科研">
+                </ons-tab>
+            </ons-tabbar>
+        </ons-page>
+    </template>
+
+    <template id="z1.html">
+        <ons-page id="z1">
+            <ul class="list list--inset" style="margin-top: 50px;">
+                <li class="list-item list--inset__item list-item--chevron list-item--tappable">
+                    <div class="list-item__center" id="push-button">国家重点研发计划</div>
+                </li>
+                <li class="list-item list--inset__item list-item--chevron list-item--tappable">
+                    <div class="list-item__center">国家科技重大专项</div>
+                </li>
+                <li class="list-item list--inset__item list-item--chevron list-item--tappable">
+                    <div class="list-item__center">国家社科基金</div>
+                </li>
+                <li class="list-item list--inset__item list-item--chevron list-item--tappable">
+                    <div class="list-item__center">国家自然科学基金</div>
+                </li>
+                <li class="list-item list--inset__item list-item--chevron list-item--tappable">
+                    <div class="list-item__center">军委科技委立项项目（基础加强等）</div>
+                </li>
+            </ul>
+        </ons-page>
+    </template>
+
+    <template id="z2.html">
+        <ons-page id="z2">
+            <ul class="list list--inset" style="margin-top: 50px;">
+                <li class="list-item list--inset__item list-item--chevron list-item--tappable">
+                    <div class="list-item__center">科工局立项项目（国防基础科研计划等）</div>
+                </li>
+                <li class="list-item list--inset__item list-item--chevron list-item--tappable">
+                    <div class="list-item__center">高技术船项目</div>
+                </li>
+                <li class="list-item list--inset__item list-item--chevron list-item--tappable">
+                    <div class="list-item__center">武装预研、军品科研项目</div>
+                </li>
+            </ul>
+        </ons-page>
+    </template>
+
+    <template id="z3.html">
+        <ons-page id="z3">
+            <ul class="list list--inset" style="margin-top: 50px;">
+                <li class="list-item list--inset__item list-item--chevron list-item--tappable">
+                    <div class="list-item__center">其它省市项目</div>
+                </li>
+            </ul>
+        </ons-page>
+    </template>
+
+    <template id="hk.html">
+        <ons-page id="hk">
+            <ul class="list list--inset" style="margin-top: 50px;">
+                <li class="list-item list--inset__item list-item--chevron list-item--tappable">
+                    <div class="list-item__center">军品（民品）横向项目</div>
+                </li>
+            </ul>
+        </ons-page>
+    </template>
+
+    <!-- 纵向一类 国家重点研发计划 计算页 -->
+    <template id="z1n1.html">
+        <ons-page id="z1n1">
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button>返回</ons-back-button>
+                </div>
+                <div class="center">国家重点研发计划</div>
+            </ons-toolbar>
+
+            <p style="text-align:center">请在下方输入您的总经费和设备购置费</p>
+            <form action="#" th:action="@{/z1n1}" th:object="${calculatorData}" method="post">
+                <ul class="list">
+                    <li class="list-item">
+                        <div class="list-item__center">
+                            总经费：<input type="text" class="text-input" th:field="*{fund}" />
+                        </div>
+
+                    </li>
+                    <li class="list-item">
+                        <div class="list-item__center">
+                            设备购置费：<input type="text" class="text-input" th:field="*{equipmentCost}" />
+                        </div>
+                    </li>
+                    <!--
+                    <li class="list-item">
+                        <div class="list-item__center">
+                            <input type="submit" value="Submit" />
+                            <input type="reset" value="Reset" />
+                        </div>
+                    </li>
+                    -->
+                </ul>
+                <style scoped>
+                    .button-success,
+                    .button-error,
+                    .button-warning,
+                    .button-secondary {
+                        color: white;
+                        border-radius: 4px;
+                        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+                    }
+                
+                    .button-success {
+                        background: rgb(28, 184, 65);
+                        /* this is a green */
+                    }
+                
+                    .button-error {
+                        background: rgb(202, 60, 60);
+                        /* this is a maroon */
+                    }
+                
+                    .button-warning {
+                        background: rgb(223, 117, 20);
+                        /* this is an orange */
+                    }
+                
+                    .button-secondary {
+                        background: rgb(66, 184, 221);
+                        /* this is a light blue */
+                    }
+                </style>
+                <div style="text-align:center; margin-top:50px;">
+                    <button type="submit" class="button-secondary pure-button">计算经费</button>
+                    <button type="reset" class="button-error pure-button">重新输入</button>
+                </div>
+            </form>
+        </ons-page>
+    </template>
+</body>
+
+</html>

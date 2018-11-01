@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Result</h1>
+    <p th:text="'间接费: ' + ${calculatorData.indirect_fees}" />
+    <p th:text="'学校管理费: ' + ${calculatorData.school_management_fees}" />
+    <p th:text="'学员管理费: ' + ${calculatorData.college_management_fees}" />
+    <p th:text="'项目组管理费: ' + ${calculatorData.group_management_fees}" />
+    <a href="/greeting">Submit another message</a>
+</body>
+</html>

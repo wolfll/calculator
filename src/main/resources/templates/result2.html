@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css" />
+<link rel="stylesheet"
+	href="https://unpkg.com/onsenui/css/onsen-css-components.min.css" />
+<script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+<script>
+	document.addEventListener('init', function(event) {
+		var page = event.target;
+
+		if (page.id === 'page1') {
+			page.querySelector('#push-button').onclick = function() {
+				document.querySelector('#myNavigator').pushPage('page2.html', {
+					data : {
+						title : 'Page 2'
+					}
+				});
+			};
+		}
+
+	});
+</script>
+<script>
+	var createAlertDialog = function() {
+		var dialog = document.getElementById('my-alert-dialog');
+
+		if (dialog) {
+			dialog.show();
+		} else {
+			ons.createElement('alert-dialog.html', {
+				append : true
+			}).then(function(dialog) {
+				dialog.show();
+			});
+		}
+	};
+
+	var hideAlertDialog = function() {
+		document.getElementById('my-alert-dialog').hide();
+	};
+
+	var notify = function() {
+		ons.notification.alert('This dialog was created with ons.notification');
+	};
+</script>
+</head>
+
+<body>
+	<ons-navigator swipeable id="myNavigator" page="page1.html"></ons-navigator>
+
+	<template id="page1.html"> <ons-page id="page1">
+	<ons-toolbar>
+	<div class="left">
+		<a href="/z1n1">返回</a>
+	</div>
+	<div class="center">纵向一类</div>
+	</ons-toolbar>
+<!--
+	<ul class="list">
+		<li class="list-header">您输入的信息</li>
+		<li class="list-item">
+			<div class="list-item__center">
+				<p th:text="'总经费: ' + ${calculatorData.fund}" />
+			</div>
+		</li>
+		<li class="list-item">
+			<div class="list-item__center">
+				<p th:text="'设备购置费: ' + ${calculatorData.equipmentCost}" />
+			</div>
+		</li>
+
+	</ul>
+
+	<ul class="list">
+		<li class="list-header">计算结果</li>
+		<li class="list-item">
+			<div class="list-item__center">
+				<p th:text="'间接费: ' + ${calculatorData.indirect_fees}" />
+			</div>
+		</li>
+		<li class="list-item">
+			<div class="list-item__center">
+				<p th:text="'学校管理费: ' + ${calculatorData.school_management_fees}" />
+			</div>
+		</li>
+		<li class="list-item">
+			<div class="list-item__center">
+				<p th:text="'学院管理费: ' + ${calculatorData.college_management_fees}" />
+			</div>
+		</li>
+		<li class="list-item">
+			<div class="list-item__center">
+				<p th:text="'项目组管理费: ' + ${calculatorData.group_management_fees}" />
+			</div>
+		</li>
+	</ul>
+-->
+	<ons-list-header>计算结果</ons-list-header>
+    <ons-list-item expandable>
+	  <p th:text="'总经费: ' + ${calculatorData.fund}" />
+	  <div class="expandable-content">
+		<p th:text="'直接经费: ' + ${calculatorData.direct_fees}" />
+		<ons-list-item expandable>
+				<p th:text="'间接经费: ' + ${calculatorData.indirect_fees}" />
+				<div class="expandable-content">
+					<p th:text="'学校管理费: ' + ${calculatorData.school_management_fees}" />
+					<p th:text="'学院管理费: ' + ${calculatorData.college_management_fees}" />
+					<p th:text="'项目组管理费: ' + ${calculatorData.group_management_fees}" />
+			  </div>
+		</ons-list-item>
+	</div>
+    </ons-list-item>
+
+	<div class="tabbar">
+		<label class="tabbar__item"> <input type="radio"
+			name="tabbar-c" checked="checked">
+			<button class="tabbar__button">
+				<div class="tabbar__label">纵向一类</div>
+			</button>
+		</label> <label class="tabbar__item"> <input type="radio"
+			name="tabbar-c">
+			<button class="tabbar__button">
+				<div class="tabbar__label">纵向二类</div>
+			</button>
+		</label> <label class="tabbar__item"> <input type="radio"
+			name="tabbar-c">
+			<button class="tabbar__button">
+				<div class="tabbar__label">纵向三类</div>
+			</button>
+		</label> <label class="tabbar__item"> <input type="radio"
+			name="tabbar-c">
+			<button class="tabbar__button">
+				<div class="tabbar__label">横向科研</div>
+			</button>
+		</label>
+	</div>
+
+
+
+	</ons-page> </template>
+
+
+
+</body>
+</html>

@@ -10,9 +10,20 @@
 *.settings
 !pom.xml
 *.cmd
+*.project
 #过滤文件夹Debug,Release,obj  
-Debug/  
-Release/  
-obj/  
+  
 target/
 test/
+src/test/
+# Compiled class file
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
